@@ -1,0 +1,29 @@
+{
+  "name": "cloudbees-assessment",
+  "version": "1.0.0",
+  "description": "This is assessment project",
+  "homepage": "https://github.com/ssanadi/CloudBees-Assessment#readme",
+  "bugs": {
+    "url": "https://github.com/ssanadi/CloudBees-Assessment/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssanadi/CloudBees-Assessment.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "report": "allure generate .test-cache/allure-results --clean -o .test-cache/allure-report && allure open .test-cache/allure-report"
+  },
+  "dependencies": {
+    "cloudbees-assessment": "file:"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.18",
+    "allure-playwright": "^3.2.2"
+  }
+}
