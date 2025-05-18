@@ -47,8 +47,14 @@ public class GitRepoActions {
         String newContent = "This is a test file.\n";
         String appendContent = "Appending some test content.\n";
 
-        cloneRepo(repoUrl, cloneDir);
-        setupGitIdentity(cloneDir);
+        File cloneDirFile = new File(cloneDir);
+        if (!cloneDirFile.exists()) {
+            cloneRepo(repoUrl, cloneDir);
+            setupGitIdentity(cloneDir); // Only if it's a fresh clone
+        } else {
+            System.out.println("Repo already exists. Skipping clone.");
+        }
+
         addNewFile(cloneDir, newFile, newContent);
         appendToFile(cloneDir, newFile, appendContent);
     }

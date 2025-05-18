@@ -16,7 +16,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
-    "report": "allure generate .test-cache/allure-results --clean -o .test-cache/allure-report && allure open .test-cache/allure-report"
+    "report": "npx allure generate .test-cache/allure-results --clean -o .test-cache/allure-report",
+    "open:report": "npx allure open .test-cache/allure-report"
   },
   "dependencies": {
     "cloudbees-assessment": "file:"
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.18",
+    "allure-commandline": "^2.34.0",
     "allure-playwright": "^3.2.2"
   }
 }

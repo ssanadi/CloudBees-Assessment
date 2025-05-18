@@ -23,17 +23,18 @@ It contains two main tasks as per the assessment requirements:
 - Tests: `tests/cloudbees-first-test-case.spec.ts`
 - Config: `playwright.config.ts`
 
-**Description:**  
+**Test Cases Covered:**  
 Automates the following scenarios on [https://www.cloudbees.com/](https://www.cloudbees.com/):
 
-1. **Products > CloudBees CD/RO > Cost Savings > Auditors / Security > Release Governance**
+1. **Navigation CloudBees CD/RO and verify cost savings stat**
    - Open the application
    - Click the link Products on top > Click CloudBees CD/RO under Other Products
    - Verify that Cost Savings has a value of $2m
+2. **Navigation Auditors / Security on CloudBees CD/RO page and verify one of its featur title and header content**
    - Scroll down, click Auditors / Security
    - Verify the text under Release Governance (Generate single-click audit reports)
 
-2. **Resources > Documentation > Search > Pagination**
+2. **Navigation CloudBees Documentation page and verify pagination displayed**
    - Click the link Resources on top > Click Documentation
    - Verify that it opens a new tab
    - Click in the text field "Search all CloudBees Resources"
@@ -50,8 +51,8 @@ npm install
 # Run all Playwright tests
 npx playwright test
 
-# Run a specific test file
-npx playwright test tests/cloudbees-first-test-case.spec.ts
+# Run test suite
+npm run test 
 
 # Generate and open Allure report
 npm run report
