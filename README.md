@@ -63,33 +63,29 @@ npm run report
 ## Task 2: Git Automation with Java
 
 **Location:**  
-- Source: `java-git-automation/src/GitRepoActions.java`
+- Source: `java-git-automation/src/test/java/GitHelperTest.java`
 
 **Description:**  
 Automates the following git operations using Java (no external git libraries, only CLI via `ProcessBuilder`):
 
-1. **Clone and Add File**
-   - Clone a given git repo
-   - Add a new file with provided content (file name and content are inputs)
-   - Commit the change
-
-2. **Clone and Append to File**
-   - Clone a given git repo
-   - Append content to an existing file (file name and content are inputs)
-   - Commit the change
+1. GitHelperTest.java: TestNG test class that:
+- Clones a repository
+- Adds a new file and commits
+- Appends to the file and commits
+- Asserts file existence and content
 
 **How to Run:**
 
 ```sh
-# Compile the Java file
-cd java-git-automation
-javac src/GitRepoActions.java
+# Run tests
+mvn clean test
 
-# Run the Java program
-java -cp src GitRepoActions
+# Generate and View Allure Report
+mvn allure:report
+mvn allure:serve
 ```
 
-You can modify the `main` method in `GitRepoActions.java` to provide different repo URLs, file names, and content as needed.
+You can modify `GitHelperTest.java` to provide different repo URLs, file names, and content as needed.
 
 ---
 
@@ -98,12 +94,10 @@ You can modify the `main` method in `GitRepoActions.java` to provide different r
 - For UI automation:
   - The system has latest node version installed.
 
-- For git automation, it is assumed that:
+- For git automation test, it is assumed that:
   - The system has `git` and `bash` available in the environment path.
   - The user has network access to clone public repositories.
-  - The Java program is run on a Unix-like environment (for `bash -c` commands).
-  - The git user identity is set programmatically in the repo for commit operations.
-- Allure reporting is integrated for Playwright tests only.
+- Allure reporting is integrated for both tasks.
 
 ---
 
@@ -115,12 +109,18 @@ You can modify the `main` method in `GitRepoActions.java` to provide different r
   ```sh
   npm run report
   ```
+- **Git Automation test with TestNG + Allure:**
+  Generate Allure Report
+  ```sh
+  mvn allure:report
+  ```
 
 ---
 
 ## CI/CD with GitHub Actions
 
-- This repository includes a GitHub Actions workflow (`.github/workflows/playwright.yml`) that automatically runs Playwright tests and generates an Allure report on every push and pull request to the `main` or `master` branches.
+- Playwright test GitHub Actions workflow (`.github/workflows/playwright.yml`)
+- TestNG test GitHub Actions workflow (`.github/workflows/java-git-automation.yml`)
 - The workflow installs dependencies, runs the tests, generates the Allure report, and uploads the report as an artifact for easy access and review.
 
 ---

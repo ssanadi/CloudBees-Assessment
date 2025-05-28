@@ -1,5 +1,6 @@
 import java.io.*;
 import java.nio.file.*;
+import java.util.Properties;
 
 public class GitHelper {
     public static void cloneRepo(String repoUrl, String cloneDir) throws IOException, InterruptedException {
@@ -21,8 +22,22 @@ public class GitHelper {
     }
 
     public static void setupGitIdentity(String repoDir) throws IOException, InterruptedException {
-        runCommand("git config user.name \"ssanadi\"", repoDir);
-        runCommand("git config user.email \"sanadi.saifali.7@gmail.com\"", repoDir);
+        Properties props = loadGitConfig();
+        String userName = props.getProperty("user.name");
+        String userEmail = props.getProperty("user.email");
+        runCommand("git config user.name \"" + userName + "\"", repoDir);
+        runCommand("git config user.email \"" + userEmail + "\"", repoDir);
+    }
+
+    private static Properties loadGitConfig() {
+        Properties props = new Properties();
+        Path configPath = Paths.get("config.properties");
+        if (Files.exists(configPath)) {
+            try (InputStream in = Files.newInputStream(configPath)) {
+                props.load(in);
+            } catch (IOException ignored) {}
+        }
+        return props;
     }
 
     private static void runCommand(String command, String dir) throws IOException, InterruptedException {

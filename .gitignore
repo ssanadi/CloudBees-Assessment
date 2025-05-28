@@ -10,4 +10,5 @@ node_modules/
 *.class
 /java-git-automation/allure-results
 /java-git-automation/.allure
+/java-git-automation/target
 *.lst
