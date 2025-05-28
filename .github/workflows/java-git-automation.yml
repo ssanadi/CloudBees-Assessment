@@ -1,0 +1,35 @@
+name: Java Git Automation Tests
+
+on:
+  push:
+    paths:
+      - 'java-git-automation/**'
+  pull_request:
+    paths:
+      - 'java-git-automation/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Run tests with Maven
+        run: mvn -B clean test
+
+      - name: Generate Allure report
+        run: mvn allure:report
+
+      - name: Upload Allure report artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: java-git-automation/allure-results 

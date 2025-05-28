@@ -7,3 +7,7 @@ node_modules/
 /playwright/.cache/
 .test-cache/
 /java-git-automation/cloned-repo/
+*.class
+/java-git-automation/allure-results
+/java-git-automation/.allure
+*.lst
